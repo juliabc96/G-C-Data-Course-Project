@@ -46,7 +46,7 @@ names(cleand) <-gsub("-freq()", "Frequency", names(cleand), ignore.case = TRUE)
 names(cleand) <-gsub("angle", "Angle", names(cleand))
 names(cleand) <-gsub("gravity", "Gravity", names(cleand))
 
-#Final cleaned and tidy data
+#Final clean and tidy data
 
 ctdata <- cleand %>%
           group_by(subject, activity) %>%
