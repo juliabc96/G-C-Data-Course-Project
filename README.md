@@ -1,8 +1,6 @@
 # G-C-Data-Course-Project
 Getting and Cleaning Data Course Project.
 
-title: "README"
-
 This is my submission for the "Getting and Clenaing Data" Course Project.
 You can find:
 1. Codebook, in which all the steps taken regarding the variables, the data and its transformation are described
