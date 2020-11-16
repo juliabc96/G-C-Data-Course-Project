@@ -1,0 +1,55 @@
+Codebook for "run_analysis.R".
+
+Step 1. Downloading and loading the datasets
+
+The datasets were downloaded and extracted from the folder UCI HAR Datase (link: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
+
+The following variables were loaded:
+    a) features (features.txt)
+              561 rows, 2 columns
+    b) activities (activity_label.txt)
+              6 rows, 2 columns
+    c) subject_test (test/subject_test.txt)
+              2947 rows, 1 column
+    d) x_test (test/X_test.txt)
+              2947 rows, 561 columns
+    e) y_test (test/y_test.txt)
+              2947 rows, 1 column
+    f) subject_train (train/subject_train.txt)
+              7352 rows, 1 column
+    g) x_train (train/X_train.txt)
+              7352 rows, 561 columns
+    h) y_train (train/y_train.txt)
+              7352 rows, 1 column
+
+Step 2. Combining/merging the datasets
+
+  2.1. Create 'x' by merging 'x_test' and 'x_train'.
+        rbind(x_train, x_test)
+  2.2. Create 'y' by merging 'y_test' and 'y_train'.
+        rbind(y_train, y_test)
+  2.3. Create 'subject' by merging 'subject_train' and 'subject_test'.
+        rbind(subject_train, subject_test)
+  2.4. Subsequently create 'mergeddata' by merging 'subject','x' and 'y'.
+        cbind(subject, y, x)
+
+Step 3. Cleaning the data
+  3.1. Extracting only the measurements on the mean and standard deviation for each measurement
+Create 'cleand' by subsetting 'mergeddata', selecting the columns 'subject' and 'code' and measurements 'mean' and 'std' (standard deviation).
+                               
+  3.2. Using descriptive activity names to name the activities in the dataset
+Now using 'cleand', replace numbers in 'code' with the corresponding activity from the 'activities' variable.
+
+  3.3. Appropriate labels for the dataset with descriptive variable names
+Rename the column'code' into 'activities'. Then rename the following:
+-'Acc' replaced by 'Accelerometer'
+-'Gyro' replaced by 'Gyroscope'
+-'BodyBody' replaced by 'Body'
+-'Mad' replaced by 'Magnitude'
+-'f' replaced by 'Frequency'
+-'t' replaced by 'Time'
+
+Step 4. Creating a second, independent tidy data
+  This means a set with the average of each variable for each activity and each subject.
+  This new dataset is created by sumarizing 'cleand'. This means grouping by subject and activity, and then taking the means of each variable for each activity and subject.
+  Finally, export the final data into a text file: 'ctdata.txt'
